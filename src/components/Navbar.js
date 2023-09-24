@@ -1,5 +1,5 @@
 import { useContext, useState } from "react";
-import { CartContext } from "./CartContext";
+import { CartContext } from "./Contexts";
 
 export default function Navbar(){
 

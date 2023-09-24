@@ -1,26 +1,43 @@
 import logo from './logo.svg';
 import './App.css';
 import { useEffect, useState } from 'react';
-import { CartContext } from './components/CartContext';
+import { CartContext, TokenContext, UrlContext } from './components/Contexts';
 import Navbar from './components/Navbar';
+import Products from './components/Products';
+
+const URL = 'http://localhost:8888/';
 
 function App() {
 
   //Cart containing product objects
   const [cart, setCart] = useState(()=>{
-    const c = localStorage.getItem('cart');
-    return JSON.parse(c) || [];
+    const storageCart = localStorage.getItem('cart');
+    return JSON.parse(storageCart) || [];
   });
 
+  //Login information
+  const [token, setToken] = useState(()=>{
+    return sessionStorage.getItem('token') || undefined;
+  });
 
   //Saving cart to localstorage if it changes
   useEffect(()=>{
     localStorage.setItem('cart', JSON.stringify(cart));
   },[cart]);
 
+  //Saving token to sessionstorage if it changes
+  useEffect(()=>{
+    sessionStorage.setItem('token', token);
+  },[token]);
+
+
   return (
     <CartContext.Provider value={{cart,setCart}}>
-      <Navbar/>
+    <TokenContext.Provider value={{token,setToken}}>
+    <UrlContext.Provider value={URL}>
+      <Products/>
+    </UrlContext.Provider>
+    </TokenContext.Provider>
     </CartContext.Provider>
   );
 }
