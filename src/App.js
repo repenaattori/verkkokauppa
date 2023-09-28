@@ -1,15 +1,17 @@
-import axios from 'axios';
 import './App.css';
-import AuthorizationExample from './components/AuthorizationExample';
-import CartExample from './components/CartExample';
+import { Link } from 'react-router-dom';
 
+/**
+ * App contains only routing links to examples.
+ * Routing is built in index.js
+ */
 function App() {
 
-  axios.defaults.baseURL = 'http://localhost:3001';
-
   return (
-    <AuthorizationExample/>
-    // <CartExample/>
+    <div>
+      <Link to={'/auth'}>Authorization example</Link><br/>
+      <Link to={'/cart'}>Shopping cart example</Link>
+    </div>
   );
 }
 

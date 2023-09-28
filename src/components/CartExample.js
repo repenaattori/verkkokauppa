@@ -1,8 +1,13 @@
 import { useEffect, useState } from 'react';
 import { CartContext } from './Contexts';
 import Products from './Products';
+import { useParams } from 'react-router-dom';
 
 
+/**
+ * Component for cart example.
+ * Initializes and updates cart in session storage.
+ */
 export default function CartExample() {
 
   //Cart containing product objects
@@ -17,7 +22,7 @@ export default function CartExample() {
   },[cart]);
 
 
-  //Providing the cart and url contexts to the child components
+  //Providing the cart context to the child components
   return (
     <CartContext.Provider value={{cart,setCart}}>
       <Products/>

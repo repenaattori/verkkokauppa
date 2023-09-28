@@ -11,6 +11,7 @@ export default function Products(){
     const [products, setProducts] = useState([]);
     const {cart, setCart} = useContext(CartContext);
     
+    //UseEffect for retrieving product information
     useEffect(() => {
         axios.get('/products')
             .then((resp)=>{
@@ -22,6 +23,7 @@ export default function Products(){
             })
     },[]);
 
+    //Adds/updates product into the cart
     function updateProducts(product){
         const prod = cart.find( p => p.id === product.id );
         if( prod ){

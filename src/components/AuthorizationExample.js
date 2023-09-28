@@ -12,6 +12,7 @@ export default function AuthorizationExample() {
     return t===null || t==='null' ? '' : t;
   });
 
+
   axios.defaults.headers.common['Authorization'] = 'Bearer ' + token;
 
   //Saving token to sessionstorage if it changes
